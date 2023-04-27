@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> peepoooooooooo<3 </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    body {
+      background-image: url("https://cellularnews.com/images/hd/dank-meme-1920X1080-di0asg79lv5qlbsc.jpeg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    h1, label, input, button { /* Target all headings, labels, inputs, and buttons */
+      font-weight: bold; /* Make font bold */
+      font-family: "Times New Roman";
+      color: black;/* Inherit font family from body */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1 style="color:black ; font-weight: bold; align-content: center">Peepo</h1>
+  <form th:method="post" th:action="@{/customer/save}"
+        th:object="${customer}" >
+    <div class="form-group">
+      <label for="customerId">Peepo ID:</label>
+      <input type="text" th:field="*{customerId}"
+             th:value="${customer.customerId}"
+             class="form-control"
+             id="customerId" placeholder="Enter peepo ID"
+             name="customerId">
+
+    </div>
+    <div class="form-group">
+      <label for="customerName">Peepo name:</label>
+      <input type="text" th:field="*{customerName}"
+             th:value="${customer.customerName}"
+             class="form-control"
+             id="customerName" placeholder="Enter peepo name"
+             name="customerName">
+
+    </div>
+    <div class="form-group">
+      <label for="customerEmail">Peepo Email:</label>
+      <input type="text" th:field="*{customerEmail}"
+             th:value="${customer.customerEmail}"
+             class="form-control"
+             id="customerEmail" placeholder="Enter peepo email"
+             name="customerEmail">
+
+    </div>
+    <div class="form-group">
+      <label for="customerAddress">Peepo Address:</label>
+      <input type="text" th:field="*{customerAddress}"
+             th:value="${customer.customerAddress}"
+             class="form-control"
+             id="customerAddress" placeholder="Enter peepo address"
+             name="customerAddress">
+
+    </div>
+    <div class="form-group">
+      <label for="customerImage">peepo Image:</label>
+      <input type="text" th:field="*{customerImage}"
+             th:value="${customer.customerImage}"
+             class="form-control"
+             id="customerImage" placeholder="Enter peepo image"
+             name="customerImage">
+
+    </div>
+
+    <button type="submit" class="btn btn-default">peepo? </button>
+  </form>
+</div>
+
+</body>
+</html>
