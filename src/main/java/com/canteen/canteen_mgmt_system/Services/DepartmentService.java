@@ -8,10 +8,8 @@ import java.util.Optional;
 
 public interface DepartmentService {
     void saveData(DepartmentDto departmentDto);
-
     List<Department> getData();
     Optional<Department> getById(Integer id);
-
     Department getByIdNoOps(Integer id);
     void deleteById(Integer id);
 }

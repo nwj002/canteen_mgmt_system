@@ -27,7 +27,7 @@ public class CustomerController {
         return customerService.getById(id);
     }
 
-    @PostMapping("/save") // save data
+    @PostMapping("save") // save data
     public String saveData(@Valid  CustomerDto customerDto) {
         customerService.saveData(customerDto);
         return "data saved";

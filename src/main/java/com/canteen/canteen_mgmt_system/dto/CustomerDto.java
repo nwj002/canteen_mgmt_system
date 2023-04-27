@@ -12,11 +12,13 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class CustomerDto {
+    private Integer id;
+
     @NotNull(message = "values should be filled")
     @NotBlank
 
-    private Integer id;
     private Integer customerId;
     private String customerName;
     private String customerEmail;

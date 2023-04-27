@@ -16,19 +16,19 @@ public class Customer {
 
     private Integer id;
 
-    @Column(name="customer_id", nullable = false)
+    @Column(name="customer_id", nullable = false, length = 50)
     private Integer customerId;
 
-    @Column(name="customer_name", nullable = false)
+    @Column(name="customer_name", nullable = false,length = 50)
     private String customerName;
 
-    @Column(name = "customer_email", nullable = false)
+    @Column(name = "customer_email", nullable = false,length = 50)
     private String customerEmail;
 
-    @Column(name="customer_address", nullable = false)
+    @Column(name="customer_address", nullable = false,length = 50)
     private String customerAddress;
 
-    @Column(name="customer_image", nullable = false)
+    @Column(name="customer_image", nullable = false,length = 50)
     private String customerImage;
 
 //    @ManyToOne

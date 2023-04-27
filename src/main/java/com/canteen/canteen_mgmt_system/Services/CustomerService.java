@@ -8,10 +8,8 @@ import java.util.Optional;
 
 public interface CustomerService {
     void saveData(CustomerDto customerDto);
-
     List<Customer>getData();
     Optional<Customer> getById(Integer id);
-
     Customer getByIdNoOps(Integer id);
     void deleteById(Integer id);
 }
