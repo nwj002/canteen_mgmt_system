@@ -24,7 +24,7 @@
         <tbody>
         <tr th:each="department:${departmentList}">
             <td th:text="${department.id}"></td>
-            <td th:text="${department.department_name}"></td>
+            <td th:text="${department.departmentName}"></td>
             <td>
                 <a class="edit btn btn-primary" th:href="@{~/th-department/edit/}+${department.id}">Edit</a> |
 

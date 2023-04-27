@@ -17,35 +17,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class ThymeLeafCustomerController {
 
-    @GetMapping("customertable")
+    @GetMapping("table")
     public String getDataView(Model model){
         model.addAttribute("customerList", customerService.getData());
-        return "customer/customertable.html";
+        return "customer/table.html";
     }
-    private final CustomerService customerService;
 
+    private final CustomerService customerService;
     @GetMapping("create")
     public String getFormPage(Model model){
         model.addAttribute("customer", new CustomerDto());
-        return "customer/customercreate.html";
+        return "customer/create.html";
     }
 
     @PostMapping("save")
     public String saveData(@Valid CustomerDto customerDto) {
         customerService.saveData(customerDto);
-        return "customer/customertable.html";
+        return "customer/table.html";
     }
 
     @GetMapping("edit/{id}")
     public String getById(@PathVariable Integer id, Model model){
         Customer customer= customerService.getByIdNoOps(id);
         model.addAttribute("customer",new CustomerDto(customer));
-        return "customer/customercreate.html";    }
+        return "customer/create.html";    }
 
     @GetMapping("deleteById/{id}")
     public String deleteById(@PathVariable Integer id) {
         customerService.deleteById(id);
-        return "redirect:/th-customer/customertable";
+        return "redirect:/th-customer/table";
 
     }
 }

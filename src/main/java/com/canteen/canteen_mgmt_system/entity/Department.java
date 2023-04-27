@@ -17,7 +17,7 @@ public class Department {
 
     private Integer id;
 
-    @Column(length = 50)
+    @Column(name="department_name", nullable = false,length = 50)
     private String departmentName;
 
 
