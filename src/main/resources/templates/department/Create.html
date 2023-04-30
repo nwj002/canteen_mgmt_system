@@ -14,6 +14,7 @@
     <h2>Department form</h2>
     <form th:method="post" th:action="@{/department/save}"
           th:object="${department}" >
+        <input type="hidden" th:field="*{id}" th:value="${department.id}"/>
         <div class="form-group">
             <label for="departmentName">Department Name:</label>
             <input type="text" th:field="*{departmentName}"

@@ -6,16 +6,15 @@ import com.canteen.canteen_mgmt_system.entity.Customer;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
-    private final CustomerService customerService;
+
+    private final CustomerService customerService; // dependency injection
 
     @GetMapping() // get data
     public List<Customer> getData() {
@@ -36,6 +35,6 @@ public class CustomerController {
     @DeleteMapping("deleteById/{id}") // delete code
     public String deleteById(@PathVariable Integer id) {
         customerService.deleteById(id);
-        return "deleted sucessfully";
+        return "data deleted sucessfully";
     }
 }

@@ -1,11 +1,11 @@
 package com.canteen.canteen_mgmt_system.Controller;
+
 import com.canteen.canteen_mgmt_system.Services.DepartmentService;
 import com.canteen.canteen_mgmt_system.dto.DepartmentDto;
 import com.canteen.canteen_mgmt_system.entity.Department;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +35,6 @@ public class DepartmentController {
     @DeleteMapping("deleteById/{id}")
     public String deleteById(@PathVariable Integer id) {
         departmentService.deleteById(id);
-        return "deleted sucessfully";
+        return "data deleted sucessfully";
     }
 }
