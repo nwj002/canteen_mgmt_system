@@ -27,6 +27,7 @@
 
   <form th:method="post" th:action="@{/customer/save}"
         th:object="${customer}" >
+    <input type="hidden" th:field="*{id}" th:value="${customer.id}">
     <div class="form-group">
       <label for="customerId">Peepo ID:</label>
       <input type="text" th:field="*{customerId}"
