@@ -14,7 +14,7 @@
             background-size: cover;
 
         }
-        h1, label, input, button { /* Target all headings, labels, inputs, and buttons */
+        h2, label, input, button { /* Target all headings, labels, inputs, and buttons */
             font-weight: bold; /* Make font bold */
             font-family: "Times New Roman";
             color: black;/* Inherit font family from body */
@@ -24,12 +24,12 @@
 <body>
 
 <div class="container">
-    <h2>Department form</h2>
+    <h2 style="text-align: center">peepo department form</h2>
     <form th:method="post" th:action="@{/department/save}"
           th:object="${department}" >
         <input type="hidden" th:field="*{id}" th:value="${department.id}"/>
         <div class="form-group">
-            <label for="departmentName">Department Name:</label>
+            <label for="departmentName">Peepo Department Name:</label>
             <input type="text" th:field="*{departmentName}"
                    th:value="${department.departmentName}"
                    class="form-control"
