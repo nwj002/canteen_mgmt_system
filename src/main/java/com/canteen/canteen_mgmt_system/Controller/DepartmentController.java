@@ -37,4 +37,10 @@ public class DepartmentController {
         departmentService.deleteById(id);
         return "data deleted sucessfully";
     }
+
+    @GetMapping("/sendEmail")
+    public String sendRegestrationEmail(){
+        this.departmentService.sendEMail();
+        return "emailsucess";
+    }
 }

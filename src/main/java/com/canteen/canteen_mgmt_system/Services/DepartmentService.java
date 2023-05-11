@@ -12,4 +12,6 @@ public interface DepartmentService {
     Optional<Department> getById(Integer id);
     Department getByIdNoOps(Integer id);
     void deleteById(Integer id);
+
+    void sendEmail();
 }
