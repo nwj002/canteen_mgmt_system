@@ -10,26 +10,33 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+
 public class SpringSecurityConfig {
-    private final SecurityUserDetailsService securityUserDetailsService;
+
+    private final SecurityUserDetailsService securityUserDetailIService;
+
+
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(securityUserDetailsService);
+        authenticationProvider.setUserDetailsService(securityUserDetailIService);
         authenticationProvider.setPasswordEncoder(PasswordEncoderUtill.getInstance());
         return authenticationProvider;
     }
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    protected SecurityFilterChain filterChain(HttpSecurity httpSecurity)
+            throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/login")
+                .requestMatchers("/login","/forgetPassword")
                 .permitAll()
-                .requestMatchers("/th-customer/**")
-                .hasAuthority("Admin")
+                .requestMatchers("th-customer/**")
+                .hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -43,4 +50,6 @@ public class SpringSecurityConfig {
 
         return httpSecurity.build();
     }
+
+
 }

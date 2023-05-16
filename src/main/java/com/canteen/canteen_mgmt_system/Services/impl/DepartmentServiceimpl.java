@@ -1,12 +1,11 @@
 package com.canteen.canteen_mgmt_system.Services.impl;
 
 import com.canteen.canteen_mgmt_system.Services.DepartmentService;
-
+import com.canteen.canteen_mgmt_system.config.PasswordEncoderUtill;
 import com.canteen.canteen_mgmt_system.dto.DepartmentDto;
 import com.canteen.canteen_mgmt_system.entity.Department;
 import com.canteen.canteen_mgmt_system.repo.DepartmentRepo;
-
-import com.canteen.canteen_mgmt_system.repo.EmailConfigRepo;
+import com.canteen.canteen_mgmt_system.repo.EmailCredRepo;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import jakarta.mail.internet.MimeMessage;
@@ -27,26 +26,26 @@ import java.util.Map;
 import java.util.Optional;
 
 
+
 @Service
 @RequiredArgsConstructor
 
 public class DepartmentServiceimpl implements DepartmentService {
     private final DepartmentRepo departmentRepo;
     private final JavaMailSender getJavaMailSender;
-    private final EmailConfigRepo.EmailCredRepo emailCredRepo;
+    private final EmailCredRepo emailCredRepo;
     private final ThreadPoolTaskExecutor taskExecutor;
 
     @Autowired
     @Qualifier("emailConfigBean")
-    private final Configuration emailConfig;
-
+    private Configuration emailConfig;
     @Override
     public void saveData(DepartmentDto departmentDto){
         Department department = new Department();
         if(departmentDto.getId()!=null){
             department.setId(departmentDto.getId());
         }
-        department.setDepartmentName(departmentDto.getDepartmentName());
+        department.setDepartmentName(PasswordEncoderUtill.getInstance().encode(departmentDto.getDepartmentName()));
         departmentRepo.save(department);
 
     }
@@ -68,33 +67,32 @@ public class DepartmentServiceimpl implements DepartmentService {
         departmentRepo.deleteById(id);
     }
 
+
     @Override
     public void sendEmail() {
-            try {
-                Map<String, String> model = new HashMap<>();
+        try {
+            Map<String, String> model = new HashMap<>();
 
-                MimeMessage message = getJavaMailSender.createMimeMessage();
-                MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
+            MimeMessage message = getJavaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
 
-                Template template = emailConfig.getTemplate("emailTemp.ftl");
-                String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+            Template template = emailConfig.getTemplate("emailTemp.ftl.html");
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
 
-                mimeMessageHelper.setTo("sendfrom@yopmail.com");
-                mimeMessageHelper.setText(html, true);
-                mimeMessageHelper.setSubject("Registration");
-                mimeMessageHelper.setFrom("sendTo@yopmail.com");
+            mimeMessageHelper.setTo("budhathokijenish111@gmail.com");
+            mimeMessageHelper.setText(html, true);
+            mimeMessageHelper.setSubject("Registration");
+            mimeMessageHelper.setFrom("nwj.shrestha@gmail.com");
 
-                taskExecutor.execute(new Thread() {
-                    public void run() {
-                        getJavaMailSender.send(message);
-                    }
-                });
-            } catch (Exception e) {
+            taskExecutor.execute(new Thread() {
+                public void run() {
+                    getJavaMailSender.send(message);
+                }
+            });
+        } catch (Exception e) {
 
-                e.printStackTrace();
-            }
-
+            e.printStackTrace();
+        }
     }
-
 
 }

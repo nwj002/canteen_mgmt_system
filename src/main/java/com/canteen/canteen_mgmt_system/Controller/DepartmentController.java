@@ -39,8 +39,9 @@ public class DepartmentController {
     }
 
     @GetMapping("/sendEmail")
-    public String sendRegestrationEmail(){
-        this.departmentService.sendEMail();
-        return "emailsucess";
+    public String sendRegistrationEmail(){
+        this.departmentService.sendEmail();
+        return "Email Sucess";
     }
+
 }

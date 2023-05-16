@@ -1,7 +1,7 @@
 package com.canteen.canteen_mgmt_system.config;
 
 import com.canteen.canteen_mgmt_system.entity.EmailCredentials;
-import com.canteen.canteen_mgmt_system.repo.EmailConfigRepo;
+import com.canteen.canteen_mgmt_system.repo.EmailCredRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import java.util.Properties;
 public class EmailConfig {
 
     @Autowired
-    private EmailConfigRepo.EmailCredRepo emailCredRepo;
+    private EmailCredRepo emailCredRepo;
 
     @Bean
     public JavaMailSender getJavaMailSender() throws Exception {
